@@ -12,7 +12,9 @@ const lineReader = readline.createInterface({
     output: process.stdout
 });
 
+// On each line from the standard input
 lineReader.on('line', line => {
+    // Process line from the input
     const input = processInput(line);
 
     // If input is bet, add bet to pool
@@ -26,6 +28,7 @@ lineReader.on('line', line => {
     lineReader.close();
 });
 
+// When input is finished
 lineReader.on('close', () => {
     // Run calculations
     const result = calculateDividends();
@@ -35,4 +38,5 @@ lineReader.on('close', () => {
     console.log(result);
 });
 
+// Prompt for input
 lineReader.prompt();

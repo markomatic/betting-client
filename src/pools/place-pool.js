@@ -7,13 +7,27 @@ const {
 } = require('lodash');
 
 class PlacePool extends PoolBase {
-    constructor(commission) {
-        super(commission);
+    /**
+     * Represents a place pool.
+     * @constructor
+     * @param {number} commissionPercent - Commission percent taken by the betting company.
+     */
+    constructor(commissionPercent) {
+        super(commissionPercent);
     }
 
+    /**
+     * Calculate dividends.
+     * @method
+     * @param result - End result of the game.
+     * @return {string} - Calculated and formatted dividends in format <product>:<winningSelection>:<dividend>.
+     */
     calculateDividend({ first, second, third }) {
+        // Calculate sum of all stakes in the pool
         const pool = sumBy(this.products, 'stake');
+        // Stakes after commission
         const afterCommission = (1 - this.commission) * pool;
+        // Calculate total winning stakes for each place (1., 2., 3.) - sum all winning stakes for each place within the pool
         const {
             firstWinningStakes,
             secondWinningStakes,
@@ -33,6 +47,10 @@ class PlacePool extends PoolBase {
             thirdWinningStakes: 0
         });
 
+        // Take 1/3 of the pool after commission
+        // Calculate dividend for each place
+        // Map each dividend into correct format <product>:<winningSelection>:<dividend>.
+        // Return formatted sting with all places joined by '\n'
         const thirdOfAfterCommission = afterCommission / 3;
         return [
             {
