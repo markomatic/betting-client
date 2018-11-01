@@ -1,6 +1,6 @@
 ### Description
 
-Node.js application to calculate the dividends for a simplified form of Tote betting for Tabcorp.
+Node.js application to calculate the dividends for a simplified form of Tote betting.
 
 ### Instructions
 
